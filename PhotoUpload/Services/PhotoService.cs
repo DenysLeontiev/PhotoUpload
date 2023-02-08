@@ -37,9 +37,11 @@ namespace PhotoUpload.Services
             return uploadResult;
         }
 
-        public Task<DeletionResult> DeleteAsync(string publicId)
+        public async Task<DeletionResult> DeleteAsync(string publicId)
         {
-            throw new NotImplementedException();
+            var deletionParams = new DeletionParams(publicId);
+            var deletionResult = await _cloudinary.DestroyAsync(deletionParams);
+            return deletionResult;
         }
     }
 }
